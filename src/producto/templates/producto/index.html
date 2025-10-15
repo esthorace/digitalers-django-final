@@ -1,6 +1,10 @@
 {% extends 'core/base.html' %}
 
 {% block content %}
-    <p>Producto</p>
-    <a href="{% url 'core:index' %}"><button>Ir a Core</button></a>
+    <h2>Producto</h2>
+    <div>
+        <a href="{% url 'producto:categoria_list' %}"><button>Categorías de Productos</button></a>
+        <a href="#"><button>Productos</button></a>
+    </div>
+    <a href="{% url 'core:index' %}"><button>Inicio</button></a>
 {% endblock content %}

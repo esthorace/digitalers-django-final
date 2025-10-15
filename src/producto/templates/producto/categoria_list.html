@@ -1,0 +1,35 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+    <table>
+        <thead>
+            <tr>
+                <th>Categorías de Productos</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for categoria in object_list %}
+                <tr>
+                    <td> 
+                        {{ categoria.nombre }}
+                    </td>        
+                    <td>
+                        <a href="#"><button>Ver</button></a>
+                        <a href="#"><button>Editar</button></a>
+                        <a href="#"><button>Eliminar</button></a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="2">No hay datos disponibles.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{% url 'producto:index' %}"><button>Volver</button></a>
+    <a href="{% url 'core:index' %}"><button>Inicio</button
+
+{% endblock content %}
