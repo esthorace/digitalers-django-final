@@ -1,0 +1,17 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+    <h2>Crear Categoría de Productos</h2>
+    <form method="post">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <button type="submit">Guardar</button>
+    </form>
+    
+    <a href="{% url 'producto:categoria_list' %}">Volver</a>
+    <a href="{% url 'core:index' %}">Inicio</a>
+
+{% endblock content %}
