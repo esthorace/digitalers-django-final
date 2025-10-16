@@ -1,8 +1,4 @@
-{% extends 'core/base.html' %}
-
-{% block title %}
-    | Producto
-{% endblock title %}
+{% extends 'producto/index.html' %}
 
 {% block content %}
     <form method="get">
@@ -23,7 +19,7 @@
             {% for categoria in object_list %}
                 <tr>
                     <td> 
-                        {{ categoria.nombre }}
+                        (id: {{ categoria.id}}) <strong>{{ categoria.nombre }}</strong>
                     </td>        
                     <td>
                         <a href="#"><button>Ver</button></a>
