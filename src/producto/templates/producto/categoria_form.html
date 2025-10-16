@@ -1,7 +1,11 @@
 {% extends 'core/base.html' %}
 
-{% block content %}
+{% block title %}
+    | Producto
+{% endblock title %}
 
+
+{% block content %}
     <h2>Crear Categoría de Productos</h2>
     <form method="post">
         {% csrf_token %}
@@ -13,5 +17,4 @@
     
     <a href="{% url 'producto:categoria_list' %}">Volver</a>
     <a href="{% url 'core:index' %}">Inicio</a>
-
 {% endblock content %}
