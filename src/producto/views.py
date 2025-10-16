@@ -3,6 +3,7 @@ from typing import Any
 from django.db.models.query import QuerySet
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
+from django.urls import reverse_lazy
 from django.views.generic import (
     CreateView,
     DeleteView,
@@ -59,6 +60,12 @@ def categoria_create(request: HttpRequest) -> HttpResponse:
     return render(request, "producto/categoria_form.html", {"form": form})
 
 
+class CategoriaCreate(CreateView):
+    model = models.Categoria
+    form_class = forms.CategoriaForm
+    success_url = reverse_lazy("producto:categoria_list")
+
+
 # ************** DETAIL
 
 
@@ -66,6 +73,10 @@ def categoria_detail(request: HttpRequest, pk: int) -> HttpResponse:
     query = models.Categoria.objects.get(id=pk)
     context = {"object": query}
     return render(request, "producto/categoria_detail.html", context)
+
+
+class CategoriaDetail(DetailView):
+    model = models.Categoria
 
 
 # ************** UPDATE
@@ -83,6 +94,12 @@ def categoria_update(request: HttpRequest, pk: int) -> HttpResponse:
     return render(request, "producto/categoria_form.html", {"form": form})
 
 
+class CategoriaUpdate(UpdateView):
+    model = models.Categoria
+    form_class = forms.CategoriaForm
+    success_url = reverse_lazy("producto:categoria_list")
+
+
 # ************** DELETE
 
 
@@ -92,3 +109,8 @@ def categoria_delete(request: HttpRequest, pk: int) -> HttpResponse:
         query.delete()
         return redirect("producto:categoria_list")
     return render(request, "producto/categoria_confirm_delete.html", {"object": query})
+
+
+class CategoriaDelete(DeleteView):
+    model = models.Categoria
+    success_url = reverse_lazy("producto:categoria_list")
