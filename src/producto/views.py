@@ -1,11 +1,24 @@
+from typing import Any
+
+from django.db.models.query import QuerySet
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
+from django.views.generic import (
+    CreateView,
+    DeleteView,
+    DetailView,
+    ListView,
+    UpdateView,
+)
 
 from . import forms, models
 
 
 def index(request):
     return render(request, "producto/index.html")
+
+
+# ************** LIST
 
 
 def categoria_list(request: HttpRequest):
@@ -16,6 +29,23 @@ def categoria_list(request: HttpRequest):
         queryset = models.Categoria.objects.all()
     context = {"object_list": queryset}
     return render(request, "producto/categoria_list.html", context)
+
+
+class CategoriaList(ListView):
+    model = models.Categoria
+    # context_object_name = "categorias"
+    # template_name = "producto/categoria_lista.html"
+
+    def get_queryset(self) -> QuerySet[Any]:
+        busqueda = self.request.GET.get("busqueda")
+        if busqueda:
+            queryset = models.Categoria.objects.filter(nombre__icontains=busqueda)
+        else:
+            queryset = super().get_queryset()
+        return queryset
+
+
+# ************** CREATE
 
 
 def categoria_create(request: HttpRequest) -> HttpResponse:
@@ -29,10 +59,16 @@ def categoria_create(request: HttpRequest) -> HttpResponse:
     return render(request, "producto/categoria_form.html", {"form": form})
 
 
+# ************** DETAIL
+
+
 def categoria_detail(request: HttpRequest, pk: int) -> HttpResponse:
     query = models.Categoria.objects.get(id=pk)
     context = {"object": query}
     return render(request, "producto/categoria_detail.html", context)
+
+
+# ************** UPDATE
 
 
 def categoria_update(request: HttpRequest, pk: int) -> HttpResponse:
@@ -45,6 +81,9 @@ def categoria_update(request: HttpRequest, pk: int) -> HttpResponse:
             form.save()
             return redirect("producto:categoria_list")
     return render(request, "producto/categoria_form.html", {"form": form})
+
+
+# ************** DELETE
 
 
 def categoria_delete(request: HttpRequest, pk: int) -> HttpResponse:
