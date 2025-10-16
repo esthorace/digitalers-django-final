@@ -1,0 +1,16 @@
+{% extends 'producto/index.html' %}
+
+{% block content %}
+    <h2>Detalle de Categoría de Producto</h2>
+    <ul>
+        <li>Nombre: {{ object.nombre }}</li>
+        {% if object.descripcion %}
+            <li>Descripción: {{ object.descripcion }}</li>
+        {% else %}
+            <li>Descripción: -</li>
+        {% endif %}
+    </ul>
+    
+    <a href="{% url 'producto:categoria_list' %}">Volver</a>
+    <a href="{% url 'core:index' %}">Inicio</a>
+{% endblock content %}
