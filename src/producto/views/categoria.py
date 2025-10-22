@@ -12,7 +12,7 @@ from django.views.generic import (
     UpdateView,
 )
 
-from . import forms, models
+from .. import forms, models
 
 
 def index(request):

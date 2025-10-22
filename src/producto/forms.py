@@ -25,7 +25,11 @@ class CategoriaForm(forms.ModelForm):
             )
 
         if len(nombre) < 3 or len(nombre) > 50:
-            raise forms.ValidationError(
-                "Longitud mínima de 3 caracteres y máxima de 50"
-            )
+            raise forms.ValidationError("Longitud mínima de 3 caracteres y máxima de 50")
         return nombre
+
+
+class ProductoForm(forms.ModelForm):
+    class Meta:
+        model = models.Producto
+        fields = "__all__"

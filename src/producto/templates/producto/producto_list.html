@@ -1,0 +1,40 @@
+{% extends 'producto/index.html' %}
+
+{% block content %}
+    <form method="get">
+        <input type="text" name="busqueda" placeholder="Buscar...">
+    </form>
+    <a href="{% url 'producto:producto_create' %}">
+        <button>Crear Producto</button>
+    </a>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Productos</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for producto in object_list %}
+                <tr>
+                    <td>
+                        (id: {{ producto.id}}) <strong>{{ producto.nombre }}</strong>
+                    </td>
+                    <td>
+                        <a href="{% url 'producto:producto_detail' producto.id %}"><button>Ver</button></a>
+                        <a href="{% url 'producto:producto_update' producto.id %}"><button>Editar</button></a>
+                        <a href="{% url 'producto:producto_delete' producto.id %}"><button>Eliminar</button></a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="2">No hay datos disponibles.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{% url 'producto:index' %}"><button>Volver</button></a>
+
+{% endblock content %}
