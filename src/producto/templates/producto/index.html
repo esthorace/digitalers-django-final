@@ -1,14 +1,16 @@
 {% extends 'core/base.html' %}
 
 {% block title %}
-    | Producto
+    | Gestión de Productos
 {% endblock title %}
 
 {% block content %}
-    <h2>Producto</h2>
-    <div>
-        <a href="{% url 'producto:categoria_list' %}"><button>Categorías de Productos</button></a>
-        <a href="{% url 'producto:producto_list' %}"><button>Productos</button></a>
+<div class="text-center">
+    <h1 class="display-4 my-4">Gestión de Productos</h1>
+    <p class="lead">Seleccione una opción para administrar las categorías o los productos.</p>
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-4">
+        <a href="{% url 'producto:categoria_list' %}" class="btn btn-primary btn-lg px-4 gap-3">Gestionar Categorías</a>
+        <a href="{% url 'producto:producto_list' %}" class="btn btn-outline-secondary btn-lg px-4">Gestionar Productos</a>
     </div>
-    
+</div>
 {% endblock content %}

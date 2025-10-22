@@ -2,32 +2,30 @@
 {% load static %}
 
 {% block content %}
-<div class="container px-4 px-lg-5">
-    <!-- Heading Row-->
-    <div class="row gx-4 gx-lg-5 align-items-center my-5">
-        <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0"
-                src="{% static 'core/img/caja-pandora.jpg' %}" alt="..." /></div>
-        <div class="col-lg-5">
-            <h1 class="font-weight-light">Business Name or Tagline</h1>
-            <p>This is a template that is great for small businesses. It doesn't have too much fancy flare to it, but it
-                makes a great use of the standard Bootstrap core components. Feel free to use this template for any
-                project you want!</p>
-            <a class="btn btn-primary" href="#!">Call to Action!</a>
-        </div>
+<!-- Heading Row-->
+<div class="row gx-4 gx-lg-5 align-items-center my-5">
+    <div class="col-lg-7">
+        <img class="img-fluid rounded mb-4 mb-lg-0" src="{% static 'core/img/caja-pandora.jpg' %}" alt="La Caja de Pandora" />
     </div>
-    <!-- Call to Action-->
-    <div class="card text-white bg-secondary my-5 py-4 text-center">
-        <div class="card-body">
-            <p class="text-white m-0">This call to action card is a great place to showcase some important information
-                or display a clever tagline!</p>
-        </div>
-    </div>
-    <div class="row gx-4 gx-lg-5">
-        {% include 'card.html' with title="Tarjeta 1" text="Prueba de tarjeta" %}
-        {% include 'card.html' with title="Tarjeta 2" %}
-        {% include 'card.html' with title="Tarjeta 3" %}
-        {% include 'card.html' with title="Tarjeta 4" %}
+    <div class="col-lg-5">
+        <h1 class="font-weight-light">La Caja de Pandora</h1>
+        <p>Bienvenido a nuestra tienda. Aquí encontrarás una variedad de productos misteriosos y fascinantes. Cada artículo tiene una historia que contar. ¡Explora nuestro catálogo y descubre tesoros ocultos!</p>
+        <a class="btn btn-primary" href="{% url 'producto:index' %}">Ver Productos</a>
     </div>
 </div>
-<script src="{% static 'core/js/script.js' %}"></script>
+
+<!-- Call to Action-->
+<div class="card text-white bg-secondary my-5 py-4 text-center">
+    <div class="card-body">
+        <p class="text-white m-0">¡Oferta especial! Por tiempo limitado, todos los envíos son gratuitos. No te pierdas esta oportunidad única.</p>
+    </div>
+</div>
+
+<!-- Content Row-->
+<div class="row gx-4 gx-lg-5">
+    {% include 'card.html' with title="Misterios Antiguos" text="Descubre artefactos de civilizaciones perdidas y secretos olvidados en el tiempo." %}
+    {% include 'card.html' with title="Tesoros Encantados" text="Objetos con propiedades mágicas y auras misteriosas que te transportarán a otros mundos." %}
+    {% include 'card.html' with title="Curiosidades Únicas" text="Encuentra artículos extraños y maravillosos que no verás en ningún otro lugar." %}
+</div>
+
 {% endblock content %}

@@ -1,14 +1,24 @@
-{% extends 'producto/index.html' %}
+{% extends 'core/base.html' %}
+
+{% block title %}| Confirmar Borrado{% endblock title %}
 
 {% block content %}
-    <h2>Borrar Categoría de Producto</h2>
-
-    <p>¿Está seguro de borrar la categoría {{ object.nombre }}?</p>
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit">Confirmo</button>
-    </form>
-
-    <a href="{% url 'producto:categoria_list' %}">Volver</a>
-    <a href="{% url 'core:index' %}">Inicio</a>
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card text-center">
+            <div class="card-header">
+                <h3>Borrar Categoría</h3>
+            </div>
+            <div class="card-body">
+                <p class="card-text">¿Está seguro de que desea borrar la categoría <strong>"{{ object.nombre }}"</strong>?</p>
+                <p class="text-danger">Esta acción no se puede deshacer.</p>
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Sí, borrar</button>
+                    <a href="{% url 'producto:categoria_list' %}" class="btn btn-secondary">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}

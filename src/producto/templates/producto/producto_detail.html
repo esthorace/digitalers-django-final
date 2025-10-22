@@ -1,22 +1,26 @@
-{% extends 'producto/index.html' %}
+{% extends 'core/base.html' %}
+
+{% block title %}| Detalle de Producto{% endblock title %}
 
 {% block content %}
-    <h2>Detalle de Producto</h2>
-    <ul>
-        <li>Nombre: {{ object.nombre }}</li>
-        <li>Categoría: {{ object.categoria|default:"-" }}</li>
-        <li>Precio: ${{ object.precio }}</li>
-        <li>Stock: {{ object.stock }}</li>
-        <li>Disponible: {% if object.disponible %}Sí{% else %}No{% endif %}</li>
-        {% if object.descripcion %}
-            <li>Descripción: {{ object.descripcion }}</li>
-        {% else %}
-            <li>Descripción: -</li>
-        {% endif %}
-        <li>Creado: {{ object.creado }}</li>
-        <li>Actualizado: {{ object.actualizado }}</li>
-    </ul>
-
-    <a href="{% url 'producto:producto_list' %}">Volver</a>
-    <a href="{% url 'core:index' %}">Inicio</a>
+<div class="card">
+    <div class="card-header">
+        <h2 class="card-title mb-0">Detalle de Producto</h2>
+    </div>
+    <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Nombre:</strong> {{ object.nombre }}</li>
+            <li class="list-group-item"><strong>Categoría:</strong> {{ object.categoria|default:"Sin categoría" }}</li>
+            <li class="list-group-item"><strong>Precio:</strong> ${{ object.precio }}</li>
+            <li class="list-group-item"><strong>Stock:</strong> {{ object.stock }} unidades</li>
+            <li class="list-group-item"><strong>Disponible:</strong> {% if object.disponible %}<span class="badge bg-success">Sí</span>{% else %}<span class="badge bg-danger">No</span>{% endif %}</li>
+            <li class="list-group-item"><strong>Descripción:</strong> {{ object.descripcion|default:"No especificada" }}</li>
+            <li class="list-group-item text-muted"><small>Creado: {{ object.creado|date:"d/m/Y H:i" }} | Actualizado: {{ object.actualizado|date:"d/m/Y H:i" }}</small></li>
+        </ul>
+    </div>
+    <div class="card-footer">
+        <a href="{% url 'producto:producto_list' %}" class="btn btn-secondary">Volver a la lista</a>
+        <a href="{% url 'producto:producto_update' object.id %}" class="btn btn-warning">Editar</a>
+    </div>
+</div>
 {% endblock content %}

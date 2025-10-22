@@ -1,16 +1,21 @@
-{% extends 'producto/index.html' %}
+{% extends 'core/base.html' %}
+
+{% block title %}| Detalle de Categoría{% endblock title %}
 
 {% block content %}
-    <h2>Detalle de Categoría de Producto</h2>
-    <ul>
-        <li>Nombre: {{ object.nombre }}</li>
-        {% if object.descripcion %}
-            <li>Descripción: {{ object.descripcion }}</li>
-        {% else %}
-            <li>Descripción: -</li>
-        {% endif %}
-    </ul>
-    
-    <a href="{% url 'producto:categoria_list' %}">Volver</a>
-    <a href="{% url 'core:index' %}">Inicio</a>
+<div class="card">
+    <div class="card-header">
+        <h2 class="card-title mb-0">Detalle de Categoría</h2>
+    </div>
+    <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Nombre:</strong> {{ object.nombre }}</li>
+            <li class="list-group-item"><strong>Descripción:</strong> {{ object.descripcion|default:"No especificada" }}</li>
+        </ul>
+    </div>
+    <div class="card-footer">
+        <a href="{% url 'producto:categoria_list' %}" class="btn btn-secondary">Volver a la lista</a>
+        <a href="{% url 'producto:categoria_update' object.id %}" class="btn btn-warning">Editar</a>
+    </div>
+</div>
 {% endblock content %}

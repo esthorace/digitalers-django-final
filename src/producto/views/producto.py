@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.urls import reverse_lazy
 from django.views.generic import (
     CreateView,
@@ -18,6 +19,17 @@ class Index(TemplateView):
 
 class ProductoList(ListView):
     model = Producto
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        busqueda = self.request.GET.get("busqueda")
+        if busqueda:
+            queryset = queryset.filter(
+                Q(nombre__icontains=busqueda)
+                | Q(descripcion__icontains=busqueda)
+                | Q(categoria__nombre__icontains=busqueda)
+            ).distinct()
+        return queryset
 
 
 class ProductoCreate(CreateView):
