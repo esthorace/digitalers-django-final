@@ -3,49 +3,49 @@
 {% block title %}| Iniciar Sesión{% endblock title %}
 
 {% block content %}
-<div class="row justify-content-center">
-    <div class="col-md-6 col-lg-5">
-        <div class="card shadow-lg">
-            <div class="card-body p-4 p-md-5">
-                <h2 class="text-center mb-4">Iniciar Sesión</h2>
-                <form method="post" novalidate>
-                    {% csrf_token %}
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-lg">
+                <div class="card-body p-4 p-md-5">
+                    <h2 class="text-center mb-4">Iniciar Sesión</h2>
+                    <form method="post" novalidate>
+                        {% csrf_token %}
 
-                    {% if form.non_field_errors %}
-                        <div class="alert alert-danger">
-                            {% for error in form.non_field_errors %}
-                                {{ error }}
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                {% for error in form.non_field_errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        <div class="form-floating mb-3">
+                            <input type="text" name="{{ form.username.name }}" class="form-control {% if form.username.errors %}is-invalid{% endif %}" id="id_username" placeholder="Usuario" value="{{ form.username.value|default:'' }}" required>
+                            <label for="id_username">Usuario</label>
+                            {% for error in form.username.errors %}
+                                <div class="invalid-feedback">{{ error }}</div>
                             {% endfor %}
                         </div>
-                    {% endif %}
 
-                    <div class="form-floating mb-3">
-                        <input type="text" name="{{ form.username.name }}" class="form-control {% if form.username.errors %}is-invalid{% endif %}" id="id_username" placeholder="Usuario" value="{{ form.username.value|default:'' }}" required>
-                        <label for="id_username">Usuario</label>
-                        {% for error in form.username.errors %}
-                            <div class="invalid-feedback">{{ error }}</div>
-                        {% endfor %}
+                        <div class="form-floating mb-3">
+                            <input type="password" name="{{ form.password.name }}" class="form-control {% if form.password.errors %}is-invalid{% endif %}" id="id_password" placeholder="Contraseña" required>
+                            <label for="id_password">Contraseña</label>
+                            {% for error in form.password.errors %}
+                                <div class="invalid-feedback">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">Iniciar Sesión</button>
+                        </div>
+
+                    </form>
+                    <div class="text-center mt-4">
+                        <p class="mb-0">¿No tienes una cuenta? <a href="#">Regístrate aquí</a>.</p>
+                        <p><a href="#" class="small">¿Olvidaste tu contraseña?</a></p>
                     </div>
-
-                    <div class="form-floating mb-3">
-                        <input type="password" name="{{ form.password.name }}" class="form-control {% if form.password.errors %}is-invalid{% endif %}" id="id_password" placeholder="Contraseña" required>
-                        <label for="id_password">Contraseña</label>
-                        {% for error in form.password.errors %}
-                            <div class="invalid-feedback">{{ error }}</div>
-                        {% endfor %}
-                    </div>
-
-                    <div class="d-grid">
-                        <button type="submit" class="btn btn-primary btn-lg">Iniciar Sesión</button>
-                    </div>
-
-                </form>
-                <div class="text-center mt-4">
-                    <p class="mb-0">¿No tienes una cuenta? <a href="#">Regístrate aquí</a>.</p>
-                    <p><a href="#" class="small">¿Olvidaste tu contraseña?</a></p>
                 </div>
             </div>
         </div>
     </div>
-</div>
 {% endblock content %}

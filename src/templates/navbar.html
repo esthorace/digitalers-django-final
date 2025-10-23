@@ -3,8 +3,8 @@
     <div class="container px-5">
         <a class="navbar-brand" href="{% url 'core:index' %}">La Caja de Pandora</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
-                class="navbar-toggler-icon"></span></button>
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+            class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'core:index' %}">Inicio</a></li>
@@ -12,8 +12,8 @@
                     <li class="nav-item"><a class="nav-link" href="{% url 'producto:index' %}">Producto</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">{{ user.username }}</a></li>
                     <form action="{% url 'core:logout' %}" method="post">
-                    {% csrf_token %}
-                    <li class="nav-item"><button class="nav-link" type="submit">Logout</button></li>
+                        {% csrf_token %}
+                        <li class="nav-item"><button class="nav-link" type="submit">Logout</button></li>
                     </form>
                 {% else %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'core:login' %}">Login</a></li>
