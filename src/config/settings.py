@@ -133,3 +133,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 LOGIN_URL = reverse_lazy("core:login")
 LOGIN_REDIRECT_URL = reverse_lazy("core:index")
+
+# Sirve para indicar dónde guardar archivos media
+MEDIA_ROOT = BASE_DIR / "media"
+# Indica la URL pública para manejar archivos media
+MEDIA_URL = "/media/"
