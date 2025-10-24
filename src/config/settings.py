@@ -22,12 +22,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-8peg5cups=*-4_iy5c(twp66tz1vq-bd3bldq#9vlvl$g*_89w"
+from django.core.management.utils import get_random_secret_key
+
+SECRET_KEY = get_random_secret_key()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["esthorace.pythonanywhere.com"]
 
 
 # Application definition
@@ -82,13 +84,6 @@ WSGI_APPLICATION = "config.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -138,3 +133,12 @@ LOGIN_REDIRECT_URL = reverse_lazy("core:index")
 MEDIA_ROOT = BASE_DIR / "media"
 # Indica la URL pública para manejar archivos media
 MEDIA_URL = "/media/"
+
+STATIC_ROOT = BASE_DIR / "static"
+
+try:
+    # Lo va a importar si el archivo existe (borrarlo en producción)
+    from .settings_dev import *
+except ModuleNotFoundError:
+    # Si no está disponible es porque está corriendo en producción
+    pass
