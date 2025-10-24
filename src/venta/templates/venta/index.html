@@ -1,0 +1,15 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+    | Gestión de Ventas
+{% endblock title %}
+
+{% block content %}
+    <div class="text-center">
+        <h1 class="display-4 my-4">Gestión de Ventas</h1>
+        <p class="lead">Seleccione una opción para administrar las ventas.</p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-4">
+            <a href="{% url 'venta:venta_list' %}" class="btn btn-primary btn-lg px-4 gap-3">Gestionar Ventas</a>
+        </div>
+    </div>
+{% endblock content %}

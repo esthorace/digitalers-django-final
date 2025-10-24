@@ -1,0 +1,24 @@
+{% extends 'core/base.html' %}
+
+{% block title %}| Detalle de Venta{% endblock title %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title mb-0">Detalle de Venta</h2>
+        </div>
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Vendedor:</strong> {{ object.vendedor }}</li>
+                <li class="list-group-item"><strong>Producto:</strong> {{ object.producto }}</li>
+                <li class="list-group-item"><strong>Cantidad:</strong> {{ object.cantidad }}</li>
+                <li class="list-group-item"><strong>Precio Total:</strong> ${{ object.precio_total }}</li>
+                <li class="list-group-item"><strong>Fecha:</strong> {{ object.fecha_venta|date:"d/m/Y H:i" }}</li>
+            </ul>
+        </div>
+        <div class="card-footer">
+            <a href="{% url 'venta:venta_list' %}" class="btn btn-secondary">Volver a la lista</a>
+            <a href="{% url 'venta:venta_update' object.id %}" class="btn btn-warning">Editar</a>
+        </div>
+    </div>
+{% endblock content %}
