@@ -10,6 +10,11 @@
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'core:index' %}">Inicio</a></li>
                 {% if user.is_authenticated %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'producto:index' %}">Producto</a></li>
+                    {% if user.vendedor.avatar %}
+                        <img src="{{ user.vendedor.avatar.url }}" alt="avatar" class="rounded-circle me-2" style="height: 30px; width: 30px; object-fit: cover;">
+                    {% else %}
+                        <i class="bi bi-person-circle fs-4 me-2">😊</i>
+                    {% endif %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'core:profile' %}">{{ user.username }}</a></li>
                     <form action="{% url 'core:logout' %}" method="post">
                         {% csrf_token %}
